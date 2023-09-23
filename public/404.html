@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>404 | DailyHot API</title>
-    <link rel="shortcut icon" href="https://img.imsyy.top/logo/imsyy.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./favicon.svg" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css"
@@ -132,22 +132,12 @@
       </div>
     </main>
     <footer>
-      <div class="social">
-        <i class="fa-brands fa-github" onclick="socialJump('github')"></i>
-        <div class="point"></div>
-        <i class="fa-solid fa-house" onclick="socialJump('home')"></i>
-        <div class="point"></div>
-        <i class="fa-solid fa-envelope" onclick="socialJump('email')"></i>
-      </div>
       <div class="power">
         Copyright © 2020
         <script>
           document.write(" - " + new Date().getFullYear());
         </script>
-        <a href="https://imsyy.top/" target="_blank">無名</a>
-      </div>
-      <div class="icp">
-        <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022018134号-1</a>
+        fldhhh
       </div>
     </footer>
     <script>
@@ -162,28 +152,6 @@
       };
       darkModeMediaQuery.addListener(toggleDarkMode);
       toggleDarkMode(darkModeMediaQuery);
-
-      // 按钮事件
-      const clickFunction = () => {
-        window.location.href = "/api/links";
-      };
-
-      // 社交链接跳转
-      const socialJump = (type) => {
-        switch (type) {
-          case "github":
-            window.location.href = "https://github.com/imsyy/";
-            break;
-          case "home":
-            window.location.href = "https://www.imsyy.top/";
-            break;
-          case "email":
-            window.location.href = "mailto:one@imsyy.top";
-            break;
-          default:
-            break;
-        }
-      };
     </script>
   </body>
 </html>
