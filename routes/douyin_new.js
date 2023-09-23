@@ -14,7 +14,7 @@ const { get, set, del } = require("../utils/cacheData");
 const routerInfo = {
   name: "douyin",
   title: "抖音",
-  subtitle: "热点榜",
+  subtitle: "热点榜(新)",
 };
 
 // 缓存键名
