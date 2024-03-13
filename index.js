@@ -27,18 +27,28 @@ app.use(
   }),
 );
 
+// CORS
 app.use(async (ctx, next) => {
-  if (domain === "*") {
-    await next();
+  ctx.set("Access-Control-Allow-Origin", domain);
+  ctx.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  ctx.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  ctx.set("Access-Control-Allow-Credentials", "true");
+  // 处理预检请求
+  if (ctx.method === "OPTIONS") {
+    ctx.status = 200;
   } else {
-    if (ctx.headers.origin === domain || ctx.headers.referer === domain) {
+    if (domain === "*") {
       await next();
     } else {
-      ctx.status = 403;
-      ctx.body = {
-        code: 403,
-        message: "请通过正确的域名访问",
-      };
+      if (ctx.headers.origin === domain || ctx.headers.referer === domain) {
+        await next();
+      } else {
+        ctx.status = 403;
+        ctx.body = {
+          code: 403,
+          message: "请通过正确的域名访问",
+        };
+      }
     }
   }
 });
@@ -50,7 +60,7 @@ app.use(router.allowedMethods());
 // 启动应用程序并监听端口
 const startApp = (port) => {
   app.listen(port, () => {
-    console.log(`成功在 ${port} 端口上运行`);
+    console.info(`成功在 ${port} 端口上运行`);
   });
 };
 
@@ -61,7 +71,7 @@ const checkPort = (port) => {
       .createServer()
       .once("error", (err) => {
         if (err.code === "EADDRINUSE") {
-          console.log(`端口 ${port} 已被占用, 正在尝试其他端口...`);
+          console.info(`端口 ${port} 已被占用, 正在尝试其他端口...`);
           server.close();
           resolve(false);
         } else {
